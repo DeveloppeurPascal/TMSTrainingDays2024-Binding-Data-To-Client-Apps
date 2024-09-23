@@ -2,9 +2,9 @@
 
 [This page in english.](README.md)
 
-Ce dépôt de code contiendra les exemples et ma présentation du 26 et 27 septembre lors des [TMS Training Days 2024](https://tmstrainingdays.com/) à Lille.
+Il existe de nombreuses façons d'échanger des données entre logiciels sur des réseaux locaux ou Internet. Je vous propose d'en voir quelques unes en utilisant les technologies proposées par TMS Software pour Delphi. Nous pourrons ainsi faire communiquer des applications mobiles, des logiciels desktop et des sites Internet. Ce sera aussi l'occasion de voir comment utiliser un standard du web dans vos projets Delphi afin d'alimenter une API utilisable nativement en JavaScript.
 
-Vous en saurez plus après l'événement.
+Ce dépôt de code contiendra les exemples et ma présentation du 26 et 27 septembre lors des [TMS Training Days 2024](https://tmstrainingdays.com/) à Lille.
 
 Ce dépôt de code contient un projet développé en langage Pascal Objet sous Delphi. Vous ne savez pas ce qu'est Dephi ni où le télécharger ? Vous en saurez plus [sur ce site web](https://delphi-resources.developpeur-pascal.fr/).
 
