@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript Client Sample</title>
+	</head>
+	<body>
+		<form>
+			<h1>JavaScript Client Sample</h1>
+			<div>
+				<button type="button" id="btnStart">Start</button>
+				<button type="button" id="btnStop">Stop</button>
+			</div>
+			<fieldset>
+				<div>
+					<label for="edtFirstNumber">First number</label>
+					<input type="text" id="edtFirstNumber" value="0">
+				</div>
+				<div>
+					<label for="edtSecondNumber">Second number</label>
+					<input type="text" id="edtSecondNumber" value="0">
+				</div>
+				<div>
+					<button type="button" id="btnAdd">Add</button>
+					<button type="button" id="btnSub">Sub</button>
+				</div>
+				<div>
+					<p>Operations :</p>
+					<div id="mmoResults"></div>
+				</div>
+			</fieldset>
+		</form>
+		<script>
+			let socket = false;
+
+			function UpdateButtons() {
+				// console.log(socket);
+				// console.log(socket.readyState);
+				let SocketActive = (false !== socket) && (socket.readyState == 1);
+				document.getElementById('btnStart').disabled = SocketActive;
+				document.getElementById('btnStop').disabled = ! SocketActive;
+				document.getElementById('btnAdd').disabled = ! SocketActive;
+				document.getElementById('btnSub').disabled = ! SocketActive;
+			}
+			
+			document.getElementById('btnStart').onclick = function (event) {
+				if (! document.getElementById('btnStart').disabled) {
+					console.log('Start');
+					document.getElementById('btnStart').disabled = true;
+					socket = new WebSocket('ws://127.0.0.1:8080/E5B8C258-1BB3-4EA2-A0B7-B19CD80E9428');
+					socket.addEventListener('open', (event) => {
+						UpdateButtons();
+						console.log('socket opened');
+					});
+					socket.addEventListener('close', (event) => {
+						UpdateButtons();
+						console.log('socket closed');
+					});
+					socket.addEventListener('error', (event) => {
+						console.log('socket error: ' + error);
+					});
+					socket.addEventListener('message', (event) => {
+						UpdateButtons();
+						console.log('socket message: '+event.data);
+						const jso = JSON.parse(event.data);
+						let s = '';
+						if (1 == jso.Operator) {
+							s = jso.FirstNumber+'+'+jso.SecondNumber+'='+jso.Value;
+						}
+						else if (2 == jso.Operator) {
+							s = jso.FirstNumber+'-'+jso.SecondNumber+'='+jso.Value;
+						}
+						else {
+							s = 'Unknown operator '+jso.operator;
+						}
+						const p = document.createElement('p');
+						p.textContent = s;
+						document.getElementById('mmoResults').appendChild(p);
+					});
+				}
+			};
+			document.getElementById('btnStop').onclick = function (event) {
+				if (! document.getElementById('btnStop').disabled) {
+					console.log('Stop');
+					document.getElementById('btnStop').disabled = true;
+					socket.close();
+				}
+			};
+			document.getElementById('btnAdd').onclick = function (event) {
+				if (! document.getElementById('btnAdd').disabled) {
+					const msg = {
+						'FirstNumber':document.getElementById('edtFirstNumber').value,
+						'SecondNumber':document.getElementById('edtSecondNumber').value,
+						'Operator':1
+					};
+					socket.send(JSON.stringify(msg));
+				}
+			};
+			document.getElementById('btnSub').onclick = function (event) {
+				if (! document.getElementById('btnSub').disabled) {
+					const msg = {
+						'FirstNumber':document.getElementById('edtFirstNumber').value,
+						'SecondNumber':document.getElementById('edtSecondNumber').value,
+						'Operator':2
+					};
+					socket.send(JSON.stringify(msg));
+				}
+			};
+			
+			UpdateButtons();
+		</script>
+	</body>
+</html>

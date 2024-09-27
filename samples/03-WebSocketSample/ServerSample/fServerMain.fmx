@@ -1,0 +1,98 @@
+object frmServerMain: TfrmServerMain
+  Left = 0
+  Top = 0
+  Caption = 'WebSocket Server Sample'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSFNCWebSocketServer1: TTMSFNCWebSocketServer
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 64.000000000000000000
+    Position.Y = 58.000000000000000000
+    AutoSyncEvents = False
+    OnConnect = TMSFNCWebSocketServer1Connect
+    OnAllow = TMSFNCWebSocketServer1Allow
+    OnMessageReceived = TMSFNCWebSocketServer1MessageReceived
+    OnDisconnect = TMSFNCWebSocketServer1Disconnect
+    OnClose = TMSFNCWebSocketServer1Close
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Top
+    Size.Width = 640.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = btnStart
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnStop
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    object btnStart: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 310.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Start'
+      TextSettings.Trimming = None
+      OnClick = btnStartClick
+    end
+    object btnStop: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 310.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Stop'
+      TextSettings.Trimming = None
+      OnClick = btnStopClick
+    end
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Align = Client
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 630.000000000000000000
+    Size.Height = 420.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 626.000000000000000000
+    Viewport.Height = 416.000000000000000000
+  end
+end

@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EECF380A-C688-40EF-9947-ACB440984B21}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ServerSample\ServerSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCLClientSample\VCLClientSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMXClientSample\FMXClientSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="WebCoreClientSample\WebCoreClientSample.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ServerSample">
+        <MSBuild Projects="ServerSample\ServerSample.dproj"/>
+    </Target>
+    <Target Name="ServerSample:Clean">
+        <MSBuild Projects="ServerSample\ServerSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServerSample:Make">
+        <MSBuild Projects="ServerSample\ServerSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLClientSample">
+        <MSBuild Projects="VCLClientSample\VCLClientSample.dproj"/>
+    </Target>
+    <Target Name="VCLClientSample:Clean">
+        <MSBuild Projects="VCLClientSample\VCLClientSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLClientSample:Make">
+        <MSBuild Projects="VCLClientSample\VCLClientSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXClientSample">
+        <MSBuild Projects="FMXClientSample\FMXClientSample.dproj"/>
+    </Target>
+    <Target Name="FMXClientSample:Clean">
+        <MSBuild Projects="FMXClientSample\FMXClientSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXClientSample:Make">
+        <MSBuild Projects="FMXClientSample\FMXClientSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WebCoreClientSample">
+        <MSBuild Projects="WebCoreClientSample\WebCoreClientSample.dproj"/>
+    </Target>
+    <Target Name="WebCoreClientSample:Clean">
+        <MSBuild Projects="WebCoreClientSample\WebCoreClientSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WebCoreClientSample:Make">
+        <MSBuild Projects="WebCoreClientSample\WebCoreClientSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ServerSample;VCLClientSample;FMXClientSample;WebCoreClientSample"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ServerSample:Clean;VCLClientSample:Clean;FMXClientSample:Clean;WebCoreClientSample:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ServerSample:Make;VCLClientSample:Make;FMXClientSample:Make;WebCoreClientSample:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
