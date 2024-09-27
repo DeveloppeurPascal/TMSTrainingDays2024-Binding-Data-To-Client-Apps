@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FFFF8BB6-14CE-4E8B-B9BA-1C97F6974AF0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CalculatorServerSample\CalculatorServerSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CalculatorClientSample\CalculatorClientSample.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CalculatorServerSample">
+        <MSBuild Projects="CalculatorServerSample\CalculatorServerSample.dproj"/>
+    </Target>
+    <Target Name="CalculatorServerSample:Clean">
+        <MSBuild Projects="CalculatorServerSample\CalculatorServerSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CalculatorServerSample:Make">
+        <MSBuild Projects="CalculatorServerSample\CalculatorServerSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CalculatorClientSample">
+        <MSBuild Projects="CalculatorClientSample\CalculatorClientSample.dproj"/>
+    </Target>
+    <Target Name="CalculatorClientSample:Clean">
+        <MSBuild Projects="CalculatorClientSample\CalculatorClientSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CalculatorClientSample:Make">
+        <MSBuild Projects="CalculatorClientSample\CalculatorClientSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CalculatorServerSample;CalculatorClientSample"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CalculatorServerSample:Clean;CalculatorClientSample:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CalculatorServerSample:Make;CalculatorClientSample:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
